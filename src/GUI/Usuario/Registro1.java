@@ -412,9 +412,10 @@ public class Registro1 extends javax.swing.JFrame {
             this.setVisible(false);
         }
         if (respuesta == 1){
-            Registro1 UsuarioNuevo = new Registro1();
-            //UsuarioNuevo.setVisible(true); login para usuarios viejos
-            this.setVisible(false);    
+            LoginUsuarioPeiticion regreso = new LoginUsuarioPeiticion();
+            this.setVisible(false);
+            regreso.setLocationRelativeTo(null);
+            regreso.setVisible(true);
         }
         if (respuesta == 2){
             this.setVisible(false);

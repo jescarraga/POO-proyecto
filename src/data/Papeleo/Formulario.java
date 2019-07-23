@@ -1,56 +1,49 @@
 
 package data.Papeleo;
 
+import data.Usuarios.Cliente.Cliente;
+
 
 public class Formulario {
     
-    String email;
-    String ramaDerecho;
+    
+    
     String Hechos;
-    String [] documentos;
+    String documentos;
+    Cliente Autor;
 
-    public Formulario(String email, String ramaDerecho, String Hechos, String[] documentos) {
-        this.email = email;
-        this.ramaDerecho = ramaDerecho;
+    public Formulario(String Hechos, String documentos, Cliente Autor) {
         this.Hechos = Hechos;
         this.documentos = documentos;
-    }
-    
-    //SET
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setRamaDerecho(String ramaDerecho) {
-        this.ramaDerecho = ramaDerecho;
-    }
-
-    public void setHechos(String Hechos) {
-        this.Hechos = Hechos;
-    }
-
-    public void setDocumentos(String[] documentos) {
-        this.documentos = documentos;
-    }
-    
-    //GET
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getRamaDerecho() {
-        return ramaDerecho;
+        this.Autor = Autor;
     }
 
     public String getHechos() {
         return Hechos;
     }
 
-    public String[] getDocumentos() {
+    public String getDocumentos() {
         return documentos;
     }
+
+    public Cliente getAutor() {
+        return Autor;
+    }
+
+    public void setHechos(String Hechos) {
+        this.Hechos = Hechos;
+    }
+
+    public void setDocumentos(String documentos) {
+        this.documentos = documentos;
+    }
+
+    public void setAutor(Cliente Autor) {
+        this.Autor = Autor;
+    }
+
+    
+   
     
     
     

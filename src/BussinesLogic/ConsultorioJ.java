@@ -4,6 +4,7 @@ package BussinesLogic;
 import data.Usuarios.Cliente.Cliente;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -50,7 +51,7 @@ public class ConsultorioJ {
     }
     
     public String FechaDeNacimiento(String Dia,String Mes, String Año){
-        return Dia +"/"+Mes+"/"+Año;
+        return Dia +" / "+Mes+" / "+Año;
     }
     
     public Cliente CrearClienteRegistro(String[] aCliente /*arreglo que va acontener los atributos del cliente*/,String Dia,String Mes,String Año){
@@ -173,14 +174,117 @@ public class ConsultorioJ {
         }
         return texto;   
     }
+    
+    //Funciones para los formularios
+    
+    public static String [] revizarNumeroDelFormulario(){
+        FileReader lectorDeArchivo = null; // Lector de archivo de texto
+       try{ // Va a intentar encontrar el archivo en el que leera los contactos
+            lectorDeArchivo = new FileReader("2.Número de formularios y quien los creo.txt");
+        }catch(FileNotFoundException error){
+            JOptionPane.showMessageDialog(null, error);
+        }
+        BufferedReader textoArchivo; // Variable donde se almacena lo que leyo el lector del archivo
+        textoArchivo = new BufferedReader(lectorDeArchivo);  // Le estamos diciendo al buffer de que lector va a recibir
+
+            String lineaTexto = null;
+            try {
+                lineaTexto = textoArchivo.readLine(); // Creo la variable donde se va a guardar cada sub cadena del archivo
+            } catch (IOException error) {//en caso de que falle muestres el mensaje de error y termine ciclo
+                JOptionPane.showMessageDialog(null, error);   
+            }
+            
+            String[] valoresArchivo = null; //Creo el arreglo donde se guardaran los datos de cada linar (Primero lo hara con la primera, luego se borrara y hara lo mismo con la segunda linea)
+            if (lineaTexto == null){
+                JOptionPane.showMessageDialog(null,"No hay ningun formulario creado");
+            }
+            valoresArchivo = lineaTexto.split(",");
+            return valoresArchivo;
+    }
+    
+    public static String concatenarCadenaDeNumeros(String [] arregloDeNumeros){
+        String CadenaAguardar = "";
+        for (int i = 0; i < arregloDeNumeros.length; i++) {
+            CadenaAguardar = CadenaAguardar + arregloDeNumeros[i] + ",";
+            if (i == (arregloDeNumeros.length - 1)) {
+                CadenaAguardar = CadenaAguardar + arregloDeNumeros[i];
+            }
+        }
+        return CadenaAguardar;
+    }
+    
+   public static void guardarFormulario(String idUsuario,String hechos, String pruebas){
+        String [] numeroFormularioAnterior = revizarNumeroDelFormulario();
+        String UltimoNumeroArchivo = numeroFormularioAnterior[numeroFormularioAnterior.length - 1];
+        int numeroFormularioAnteriorInt = Integer.parseInt(UltimoNumeroArchivo);
+        int numeroFormulario = numeroFormularioAnteriorInt + 1;
+        String numeroFormularioNuevo = Integer.toString(numeroFormulario);
+        //Va aguardar los numeros de los formularios previos en un arreglo
+        //despues va a borrar el archivo que contenia esos numero y va a
+        //crearlo d enuevo pero vacio, luego lo va a llenar con el numero de 
+        //formularios actualizados
+        try{
+            File archivoNuevoFormulario = new File ("Formulario" +numeroFormularioNuevo+".txt");
+            System.out.println("archivo de formulario creado");
+            FileWriter flwriter = null;
+            File archivoNumerosFormulario = new File("2.Número de formularios y quien los creo.txt");
+            if (archivoNumerosFormulario.exists()) {
+                if (archivoNumerosFormulario.delete()) {
+                }
+            }
+		try {   
+                        String NumerosPrevios = concatenarCadenaDeNumeros(numeroFormularioAnterior);
+                        String NumerosActuales = NumerosPrevios + "," + numeroFormularioNuevo;
+                        File archivoNumerosFormularioNuevo = new File("2.Número de formularios y quien los creo.txt");
+                        flwriter = new FileWriter("2.Número de formularios y quien los creo.txt",true);
+			BufferedWriter bfwriter = new BufferedWriter(flwriter);
+                        bfwriter.write(NumerosActuales);
+                        bfwriter.close();
+			} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (flwriter != null) {
+				try {
+					flwriter.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+            System.out.println("Exito en guardar los numeros del formulario");
+        }catch(Exception e){
+            System.err.println("Error en guardar los numeros del formulario");
+        }
+        //Termino de hacer todo lor elacionado a los numero del formulario
+        //Escribo y creo un formulario       
+        try{
+            FileWriter flwriter = null;
+		try {   
+                        String Formulario = idUsuario + "," + hechos + "," + pruebas;
+                        File archivoNuevoFormulario = new File ("Formulario" +numeroFormularioNuevo+".txt");
+                        flwriter = new FileWriter("Formulario" +numeroFormularioNuevo+".txt",true);
+			BufferedWriter bfwriter = new BufferedWriter(flwriter);
+                        bfwriter.write(Formulario);
+                        bfwriter.close();
+			} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (flwriter != null) {
+				try {
+					flwriter.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+            System.out.println("Exito en guardar el Formulario");
+        }catch(Exception e){
+            System.err.println("Error en guardar el Formulario");
+        }    
+    }
 
     public static void main(String[] args) {
         
-        String direccion = "Quien tiene derecho a los alimentos.txt";
-        String texto = InterpreteArchivosPreguntas(direccion);
-        System.out.println(texto);
-        //System.out.println( "¡Hola pap\u00e1!\nYa puedo escribir bien.\n\u00d1a\u00f1a\u00f1a\u00f1a" );
- 
         
     }
     

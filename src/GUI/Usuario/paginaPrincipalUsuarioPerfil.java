@@ -5,28 +5,24 @@
  */
 package GUI.Usuario;
 
+import BussinesLogic.ConsultorioJ;
+import GUI.Inicial.PaginaPrincipal;
+import data.Usuarios.Cliente.Cliente;
 import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Juan David
- */
+
 public class paginaPrincipalUsuarioPerfil extends javax.swing.JFrame {
 
-    /**
-     * Creates new form paginaPrincipalUsuario
-     */
+    
     public paginaPrincipalUsuarioPerfil() {
         initComponents();
-        reseatFrames();
         setLocationRelativeTo(null);
+        pantalla.setText("Bienvenido estimado Usuario por favor seleccione una opcion del menu");
+        
     }
-    public void reseatFrames () {
-    formularioFrame.setVisible(false);  
-    pruebas.setVisible(false);
-    enviar.setVisible(false);
-    hechos.setVisible(false);
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,12 +38,13 @@ public class paginaPrincipalUsuarioPerfil extends javax.swing.JFrame {
         Formulario = new javax.swing.JButton();
         Perfil = new javax.swing.JButton();
         Casos = new javax.swing.JButton();
+        LAbel1 = new javax.swing.JLabel();
+        idUsuario = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         formularioFrame = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        pruebas = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        hechos = new javax.swing.JTextPane();
         enviar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        pantalla = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +84,17 @@ public class paginaPrincipalUsuarioPerfil extends javax.swing.JFrame {
             }
         });
 
+        LAbel1.setText("Id Usuario");
+
+        idUsuario.setText("jLabel1");
+
+        jButton1.setText("Cerrar sesion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -94,33 +102,38 @@ public class paginaPrincipalUsuarioPerfil extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(Casos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Formulario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                    .addComponent(Perfil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Casos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Formulario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                            .addComponent(Perfil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(LAbel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(idUsuario))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LAbel1)
+                    .addComponent(idUsuario))
+                .addGap(63, 63, 63)
                 .addComponent(Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Formulario, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Casos, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         formularioFrame.setBackground(new java.awt.Color(204, 204, 255));
         formularioFrame.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        pruebas.setColumns(20);
-        pruebas.setForeground(new java.awt.Color(204, 204, 255));
-        pruebas.setRows(5);
-        pruebas.setText("hjvhjvjbk");
-        jScrollPane1.setViewportView(pruebas);
-
-        jScrollPane2.setViewportView(hechos);
 
         enviar.setText("Enviar Formulario");
         enviar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,30 +142,32 @@ public class paginaPrincipalUsuarioPerfil extends javax.swing.JFrame {
             }
         });
 
+        pantalla.setEditable(false);
+        pantalla.setBackground(new java.awt.Color(204, 204, 255));
+        pantalla.setColumns(20);
+        pantalla.setRows(5);
+        jScrollPane3.setViewportView(pantalla);
+
         javax.swing.GroupLayout formularioFrameLayout = new javax.swing.GroupLayout(formularioFrame);
         formularioFrame.setLayout(formularioFrameLayout);
         formularioFrameLayout.setHorizontalGroup(
             formularioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formularioFrameLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioFrameLayout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(formularioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioFrameLayout.createSequentialGroup()
-                        .addGroup(formularioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2))
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioFrameLayout.createSequentialGroup()
                         .addComponent(enviar)
-                        .addGap(195, 195, 195))))
+                        .addGap(195, 195, 195))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioFrameLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
         formularioFrameLayout.setVerticalGroup(
             formularioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioFrameLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(enviar)
                 .addGap(13, 13, 13))
         );
@@ -193,31 +208,45 @@ public class paginaPrincipalUsuarioPerfil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormularioActionPerformed
-        // TODO add your handling code here:
+        paginaPrincipalUsuarioFormulario llenarFormulario = new paginaPrincipalUsuarioFormulario();
+        this.setVisible(false);
+        llenarFormulario.setLocationRelativeTo(null);
+        llenarFormulario.setVisible(true);
+        llenarFormulario.idUsuario.setText(idUsuario.getText());
     }//GEN-LAST:event_FormularioActionPerformed
 
     private void FormularioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FormularioMouseClicked
-    reseatFrames();
-    formularioFrame.setVisible(true);    
-    pruebas.setVisible(true);
-    enviar.setVisible(true);
+    
  
     }//GEN-LAST:event_FormularioMouseClicked
 
     private void PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PerfilActionPerformed
-        // TODO add your handling code here:
+        
+        String IdUsuario = idUsuario.getText();
+        ConsultorioJ objNuevo = new ConsultorioJ();
+        ArrayList listaCliente = new ArrayList<>();
+        objNuevo.LeerTodosLosClientes(listaCliente);
+        boolean encontro = false;
+        for (int i = 0;i < listaCliente.size(); i++) {
+            Cliente nuevo = (Cliente) listaCliente.get(i);
+            if (IdUsuario.equals(nuevo.getIdPersonal())) {
+                encontro = true;
+                pantalla.setText(nuevo.toString());
+                }
+            }             
+        
+        
+        //pantalla.setText();
     }//GEN-LAST:event_PerfilActionPerformed
 
     private void PerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PerfilMouseClicked
-    reseatFrames();
+    
    
     }//GEN-LAST:event_PerfilMouseClicked
 
     private void enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarActionPerformed
-    String formulario [] = new String [1];
-    formulario [0] = hechos.getText();
-    formulario [1] = pruebas.getText();
-System.out.println(formulario.getClass().toString());
+    
+
     
 
 
@@ -228,9 +257,22 @@ System.out.println(formulario.getClass().toString());
     }//GEN-LAST:event_enviarActionPerformed
 
     private void CasosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CasosActionPerformed
-    reseatFrames();
+    
 // TODO add your handling code here:
     }//GEN-LAST:event_CasosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String [] Confirmacion = {"Ir a la pantalla de inicio", "Cerrar el programa"};
+        int respuesta = JOptionPane.showOptionDialog(this,"¿Estas segur@?","Confirmar salida",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE,null,Confirmacion,Confirmacion[0]);
+                if (respuesta == 0){
+                    PaginaPrincipal retorno = new PaginaPrincipal();
+                    this.setVisible(false);
+                    retorno.setVisible(true);
+                }
+                if (respuesta == 1) {
+                System.exit(0);
+                }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,14 +311,15 @@ System.out.println(formulario.getClass().toString());
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Casos;
     private javax.swing.JButton Formulario;
+    private javax.swing.JLabel LAbel1;
     private javax.swing.JButton Perfil;
     private javax.swing.JButton enviar;
     private javax.swing.JPanel formularioFrame;
-    private javax.swing.JTextPane hechos;
+    public javax.swing.JLabel idUsuario;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel panelFondo;
-    private javax.swing.JTextArea pruebas;
+    public javax.swing.JTextArea pantalla;
     // End of variables declaration//GEN-END:variables
 }

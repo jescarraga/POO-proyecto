@@ -126,9 +126,10 @@ public class LoginUsuarioRegistro extends javax.swing.JFrame {
                 encontro = true;
                 int respuesta = JOptionPane.showOptionDialog(this,"Bienvenido "+nuevo.getNombre(),"Ingreso exitoso",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE,null,Confirmacion,Confirmacion[0]);
                 if (respuesta == 0){
-                    /*LoginUsuario IniciaConLogin = new LoginUsuario();
-                    IniciaConLogin.setVisible(true);
-                    IniciaConLogin.setLocationRelativeTo(null); */
+                    paginaPrincipalUsuarioPerfil IniciaUsuario = new paginaPrincipalUsuarioPerfil();
+                    IniciaUsuario.setVisible(true);
+                    IniciaUsuario.setLocationRelativeTo(null);
+                    IniciaUsuario.idUsuario.setText(nuevo.getIdPersonal());
                 }
             }             
         }
