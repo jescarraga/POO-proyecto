@@ -85,8 +85,8 @@ public class ConsultorioJ {
     public void GuardarCliente (Cliente clienteAGuardar){
         FileWriter flwriter = null;
 		try {   
-                        String directorioActual = System.getProperty("user.dir");
-			flwriter = new FileWriter("1Clientes.txt",true);
+                        File ArchivoClientes = new File("src\\docs\\Clientes\\1Clientes.txt");
+			flwriter = new FileWriter(ArchivoClientes,true);
 			BufferedWriter bfwriter = new BufferedWriter(flwriter);
                         String CadenaAGuardar = clienteAGuardar.CadenaDeClienteParaArchivo();
                         bfwriter.write(CadenaAGuardar);
@@ -107,7 +107,9 @@ public class ConsultorioJ {
     public static void LeerTodosLosClientes (ArrayList<Cliente> ListaClientes){
        FileReader lectorDeArchivo = null; // Lector de archivo de texto
        try{ // Va a intentar encontrar el archivo en el que leera los contactos
-            lectorDeArchivo = new FileReader("1Clientes.txt");
+           File ArchivoClientes = new File("src\\docs\\Clientes\\1Clientes.txt");
+			
+            lectorDeArchivo = new FileReader(ArchivoClientes);
         }catch(FileNotFoundException error){
             JOptionPane.showMessageDialog(null, error);
         }
@@ -149,9 +151,9 @@ public class ConsultorioJ {
     public static String InterpreteArchivosPreguntas(String direccionDelArchivo){
         
         String texto = "";
-        
+
         try{
-            FileReader fl = new FileReader(direccionDelArchivo);
+            FileReader fl = new FileReader("src\\docs\\Preguntas\\" + direccionDelArchivo);
             BufferedReader bf = new BufferedReader(fl);
             String acumuladora = "";
             String bfRead;
@@ -180,7 +182,7 @@ public class ConsultorioJ {
     public static String [] revizarNumeroDelFormulario(){
         FileReader lectorDeArchivo = null; // Lector de archivo de texto
        try{ // Va a intentar encontrar el archivo en el que leera los contactos
-            lectorDeArchivo = new FileReader("2.Número de formularios y quien los creo.txt");
+            lectorDeArchivo = new FileReader("src\\docs\\Formularios\\2.Número de formularios y quien los creo.txt");
         }catch(FileNotFoundException error){
             JOptionPane.showMessageDialog(null, error);
         }
@@ -224,10 +226,11 @@ public class ConsultorioJ {
         //crearlo d enuevo pero vacio, luego lo va a llenar con el numero de 
         //formularios actualizados
         try{
-            File archivoNuevoFormulario = new File ("Formulario" +numeroFormularioNuevo+".txt");
+            
+            File archivoNuevoFormulario = new File ("PROYECTO\\src\\docs\\Formularios\\Formulario" +numeroFormularioNuevo+".txt");
             System.out.println("archivo de formulario creado");
             FileWriter flwriter = null;
-            File archivoNumerosFormulario = new File("2.Número de formularios y quien los creo.txt");
+            File archivoNumerosFormulario = new File("src\\docs\\Formularios\\2.Número de formularios y quien los creo.txt");
             if (archivoNumerosFormulario.exists()) {
                 if (archivoNumerosFormulario.delete()) {
                 }
@@ -235,8 +238,8 @@ public class ConsultorioJ {
 		try {   
                         String NumerosPrevios = concatenarCadenaDeNumeros(numeroFormularioAnterior);
                         String NumerosActuales = NumerosPrevios + "," + numeroFormularioNuevo;
-                        File archivoNumerosFormularioNuevo = new File("2.Número de formularios y quien los creo.txt");
-                        flwriter = new FileWriter("2.Número de formularios y quien los creo.txt",true);
+                        File archivoNumerosFormularioNuevo = new File("src\\docs\\Formularios\\2.Número de formularios y quien los creo.txt");
+                        flwriter = new FileWriter("src\\docs\\Formularios\\2.Número de formularios y quien los creo.txt",true);
 			BufferedWriter bfwriter = new BufferedWriter(flwriter);
                         bfwriter.write(NumerosActuales);
                         bfwriter.close();
@@ -261,7 +264,8 @@ public class ConsultorioJ {
             FileWriter flwriter = null;
 		try {   
                         String Formulario = idUsuario + "," + hechos + "," + pruebas;
-                        File archivoNuevoFormulario = new File ("Formulario" +numeroFormularioNuevo+".txt");
+                        
+                        File archivoNuevoFormulario = new File ("src\\docs\\Formularios\\Formulario" +numeroFormularioNuevo+".txt");
                         flwriter = new FileWriter("Formulario" +numeroFormularioNuevo+".txt",true);
 			BufferedWriter bfwriter = new BufferedWriter(flwriter);
                         bfwriter.write(Formulario);
