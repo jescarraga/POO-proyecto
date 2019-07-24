@@ -1,2 +1,2 @@
 Jordan,Escarraga,Avila,6 / Abril / 2001,No,2,Estudiante,Ninguna,Si,1001327416,Bogota D.C,Soltero,3213938457,Calle 81 sur # 78 F30,Carvajal,Ninguna,Apartamento,Ninguno,Bachillerato
-
+maria,2,2,2 / Enero / 2024,Si,2,2,2,Si,2,2,2,2,2,2,2,2,2,2
